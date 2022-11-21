@@ -4,7 +4,7 @@ const socket = require("socket.io");
 const app = express(); //app initialized and server ready
 app.use(express.static("public"));
 
-app.use(require('cors')())
+app.use(require('cors')());
 let port = process.env.PORT || 3000;
 let server = app.listen(port,()=>{
     console.log("listening to port" + port);
