@@ -100,9 +100,10 @@ function undoRedoCanvas(trackObj) {
     let img = new Image(); //new image reference element
     img.src = url;
     img.onload = (e) => {
-        tool.drawImage(img, 0, 0, canvas.width, canvas.height);
+        socket.emit("redoUndo",img);
+        // tool.drawImage(img, 0, 0, canvas.width, canvas.height);
     }
-    socket.emit("redoUndo",data);
+    
 }
 function beginPath(strokeObj) {
     tool.beginPath();
