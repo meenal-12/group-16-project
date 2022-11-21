@@ -77,8 +77,8 @@ undo.addEventListener("click", (e) => {
         undoRedoTracker
 
     }
-    // undoRedoCanvas(trackObj);
-    socket.emit("redoUndo",data);
+    undoRedoCanvas(trackObj);
+    // socket.emit("redoUndo",data);
 })
 redo.addEventListener("click", (e) => {
     if (track < undoRedoTracker.length - 1) track++;
@@ -89,8 +89,8 @@ redo.addEventListener("click", (e) => {
 
     }
 
-    // undoRedoCanvas(trackObj);
-    socket.emit("redoUndo",data);
+    undoRedoCanvas(trackObj);
+    // socket.emit("redoUndo",data);
 
 })
 function undoRedoCanvas(trackObj) {
@@ -102,6 +102,7 @@ function undoRedoCanvas(trackObj) {
     img.onload = (e) => {
         tool.drawImage(img, 0, 0, canvas.width, canvas.height);
     }
+    socket.emit("redoUndo",data);
 }
 function beginPath(strokeObj) {
     tool.beginPath();
