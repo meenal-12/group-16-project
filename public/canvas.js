@@ -31,25 +31,28 @@ tool.lineWidth = "3";
 //mousedown -> start new path,mousemove -> path fill (graphics)
 canvas.addEventListener("mousedown", (e) => {
     mouseDown = true;
-    // beginPath({
-    //     x: e.clientX,
-    //     y: e.clientY
-    // })
+    beginPath({
+        x: e.clientX,
+        y: e.clientY
+    })
     let data = {
         x: e.clientX,
         y: e.clientY
     }
-    socket.emit("beginPath", data);
-    // tool.beginPath();
-    // tool.moveTo(e.clientX,e.clientY);
+    // socket.emit("beginPath", data);
+    tool.beginPath();
+    tool.moveTo(e.clientX,e.clientY);
 })
 canvas.addEventListener("mousemove", (e) => {
     if (mouseDown) {
-        let data = {
-            x: e.clientX,
-            y: e.clientY,
-        }
-        socket.emit("drawStroke",data);
+        // let data = {
+        //     x: e.clientX,
+        //     y: e.clientY,
+        // }
+        // socket.emit("drawStroke",data);
+        
+        tool.lineTo(e.clientX,e.clientY);
+        tool.stroke();
     }
     
         // tool.lineTo(e.clientX,e.clientY);
@@ -100,8 +103,8 @@ function undoRedoCanvas(trackObj) {
     let img = new Image(); //new image reference element
     img.src = url;
     img.onload = (e) => {
-        socket.emit("redoUndo",img);
-        // tool.drawImage(img, 0, 0, canvas.width, canvas.height);
+        // socket.emit("redoUndo",img);
+        tool.drawImage(img, 0, 0, canvas.width, canvas.height);
     }
     
 }
@@ -149,13 +152,13 @@ download.addEventListener("click", (e) => {
     a.click();
 })
 
-socket.on("beginPath",(data)=>{
-    //data -> data from server
-    beginPath(data);
-})
-socket.on("drawStroke",(data)=>{
-    drawStroke(data);
-})
-socket.on("redoUndo",(data)=>{
-    undoRedoCanvas(data);
-})
+// socket.on("beginPath",(data)=>{
+//     //data -> data from server
+//     beginPath(data);
+// })
+// socket.on("drawStroke",(data)=>{
+//     drawStroke(data);
+// })
+// socket.on("redoUndo",(data)=>{
+//     undoRedoCanvas(data);
+// })
