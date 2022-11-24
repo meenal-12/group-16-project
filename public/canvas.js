@@ -15,7 +15,7 @@ let eraserWidth = eraserWidthElem.value;
 let undoRedoTracker = []; //Data
 let track = 0; //Represent which action from tracker array
 let mouseDown = false;
-
+canvas.fillStyle = '#FFF';
 //API
 let tool = canvas.getContext("2d");
 tool.clearRect(0, 0, canvas.width, canvas.height);
@@ -148,7 +148,7 @@ download.addEventListener("click", (e) => {
     let url = canvas.toDataURL();
     let a = document.createElement("a");
     a.href = url;
-    a.download = "board.jpg";
+    a.download = "board.png";
     a.click();
 })
 
